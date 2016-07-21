@@ -34,8 +34,8 @@ containers are required for operation.  This guide will assume that you are usin
 will use the [official PostgreSQL Docker container](https://hub.docker.com/_/postgres/) for our database.
 
 To begin, start with a basic `docker-compose.yml` file as described in the
-[NGINX Host configuration guide](https://github.com/handcraftedbits/nginx-host#configuration).  Then, add a service
-for the database (named `db-bamboo`) and the NGINX Host Bamboo unit (named `bamboo`):
+[NGINX Host configuration guide](https://github.com/handcraftedbits/docker-nginx-host#configuration).  Then, add a
+service for the database (named `db-bamboo`) and the NGINX Host Bamboo unit (named `bamboo`):
 
 ```yaml
 bamboo:
@@ -66,7 +66,7 @@ Observe the following:
 * We mount `/opt/data/bamboo` using the local directory `/home/me/bamboo`.  This is the directory where Bamboo stores
   its data.
 * As with any other NGINX Host unit, we mount the volumes from our
-  [NGINX Host data container](https://github.com/handcraftedbits/nginx-host-data), in this case named `data`.
+  [NGINX Host data container](https://github.com/handcraftedbits/docker-nginx-host-data), in this case named `data`.
 
 For more information on configuring the PostgreSQL container, consult its
 [documentation](https://hub.docker.com/_/postgres/).
@@ -130,5 +130,5 @@ When configuring Bamboo, be sure to select `PostgreSQL` as your database, `db-ba
 
 ## Environment Variables
 
-Please see the NGINX Host [documentation](https://github.com/handcraftedbits/nginx-host#units) for information on the
-environment variables understood by this unit.
+Please see the NGINX Host [documentation](https://github.com/handcraftedbits/docker-nginx-host#units) for information
+on the environment variables understood by this unit.
