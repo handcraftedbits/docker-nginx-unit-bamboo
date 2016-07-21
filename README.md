@@ -1,4 +1,4 @@
-# NGINX Host Bamboo Unit [![Docker Pulls](https://img.shields.io/docker/stars/handcraftedbits/nginx-unit-bamboo.svg?maxAge=2592000)](https://hub.docker.com/r/handcraftedbits/nginx-unit-bamboo)
+# NGINX Host Bamboo Unit [![Docker Pulls](https://img.shields.io/docker/pulls/handcraftedbits/nginx-unit-bamboo.svg?maxAge=2592000)](https://hub.docker.com/r/handcraftedbits/nginx-unit-bamboo)
 
 A [Docker](https://www.docker.com) container that provides an
 [Atlassian Bamboo](https://www.atlassian.com/software/bamboo) unit for
