@@ -1,0 +1,5 @@
+location ${NGINX_URL_PREFIX} {
+     #include ${unit_conf}.extra;
+
+     proxy_pass http://${NGINX_PROXY_HOST}:8085${NGINX_URL_PREFIX};
+}
