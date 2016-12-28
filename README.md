@@ -6,7 +6,7 @@ A [Docker](https://www.docker.com) container that provides an
 
 # Features
 
-* Atlassian Bamboo 5.12.3.1
+* Atlassian Bamboo 5.14.3.1
 * [Apache Maven](https://maven.apache.org) 3.3.9
 * NGINX Host SSL certificates are automatically imported into Bamboo's JVM so Atlassian application links can easily
   be created

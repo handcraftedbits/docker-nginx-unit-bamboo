@@ -1,7 +1,7 @@
-FROM handcraftedbits/nginx-unit-java:8.92.14
+FROM handcraftedbits/nginx-unit-java:8.112.15
 MAINTAINER HandcraftedBits <opensource@handcraftedbits.com>
 
-ARG BAMBOO_VERSION=5.12.3.1
+ARG BAMBOO_VERSION=5.14.3.1
 ARG MAVEN_VERSION=3.3.9
 
 ENV BAMBOO_HOME /opt/data/bamboo
