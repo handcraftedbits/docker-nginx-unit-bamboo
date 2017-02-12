@@ -6,8 +6,6 @@
 
 checkCommonRequiredVariables
 
-notifyUnitLaunched
-
 copyUnitConf nginx-unit-bamboo > /dev/null
 
 logUrlPrefix "bamboo"
@@ -26,8 +24,9 @@ fileSubstitute ${bamboo_config} NGINX_URL_PREFIX `normalizeSlashesSingleSlashToE
 # Import certificate (so we can integrate with other Atlassian product instances).
 
 printf "changeit\nyes" | keytool -import -trustcacerts -alias root \
-     -file /etc/letsencrypt/live/${NGINX_UNIT_HOSTS}/fullchain.pem -keystore ${JAVA_HOME}/jre/lib/security/cacerts
+     -file /etc/letsencrypt/live/${NGINX_UNIT_HOSTS}/fullchain.pem -keystore \
+     /usr/lib/jvm/default-jvm/jre/lib/security/cacerts
 
- # Start Bamboo.
+# Start Bamboo.
 
-/opt/bamboo/bin/start-bamboo.sh -fg
+exec /opt/bamboo/bin/start-bamboo.sh -fg

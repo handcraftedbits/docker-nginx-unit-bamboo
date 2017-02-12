@@ -1,4 +1,4 @@
-FROM handcraftedbits/nginx-unit-java:8.112.15-1
+FROM handcraftedbits/nginx-unit:1.1.0
 MAINTAINER HandcraftedBits <opensource@handcraftedbits.com>
 
 ARG BAMBOO_VERSION=5.14.4.1
@@ -10,7 +10,7 @@ ENV PATH ${PATH}:/opt/maven/bin
 COPY data /
 
 RUN apk update && \
-  apk add ca-certificates wget && \
+  apk add bash ca-certificates openjdk8 wget && \
 
   cd /opt && \
   wget https://www.atlassian.com/software/bamboo/downloads/binary/atlassian-bamboo-${BAMBOO_VERSION}.tar.gz && \
@@ -22,8 +22,8 @@ RUN apk update && \
   rm apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
   mv apache-maven-${MAVEN_VERSION} maven && \
 
-  apk del ca-certificates wget
+  apk del wget
 
 EXPOSE 8085
 
-CMD ["/bin/bash", "/opt/container/script/run-bamboo.sh"]
+CMD [ "/bin/bash", "/opt/container/script/run-bamboo.sh" ]

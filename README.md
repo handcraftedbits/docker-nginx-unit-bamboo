@@ -75,7 +75,7 @@ Finally, we need to create a link in our NGINX Host container to the `bamboo` co
 is our final `docker-compose.yml` file:
 
 ```yaml
-version: '2'
+version: "3"
 
 services:
   bamboo:
@@ -104,8 +104,9 @@ services:
 
   proxy:
     image: handcraftedbits/nginx-host
-    links:
-      - bamboo
+    depends_on:
+      bamboo:
+        condition: service_healthy
     ports:
       - "443:443"
     volumes:
