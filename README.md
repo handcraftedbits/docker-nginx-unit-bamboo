@@ -6,7 +6,7 @@ A [Docker](https://www.docker.com) container that provides an
 
 # Features
 
-* Atlassian Bamboo 5.14.4.1
+* Atlassian Bamboo 5.15.0.1
 * [Apache Maven](https://maven.apache.org) 3.3.9
 * NGINX Host SSL certificates are automatically imported into Bamboo's JVM so Atlassian application links can easily
   be created
@@ -46,9 +46,8 @@ bamboo:
   links:
     - db-bamboo
   volumes:
+    - data:/opt/container/shared
     - /home/me/bamboo:/opt/data/bamboo
-  volumes_from:
-    - data
 
 db-bamboo:
   image: postgres
@@ -65,8 +64,7 @@ Observe the following:
 * We create a link in `bamboo` to `db-bamboo` in order to allow Bamboo to connect to our database.
 * We mount `/opt/data/bamboo` using the local directory `/home/me/bamboo`.  This is the directory where Bamboo stores
   its data.
-* As with any other NGINX Host unit, we mount the volumes from our
-  [NGINX Host data container](https://github.com/handcraftedbits/docker-nginx-host-data), in this case named `data`.
+* As with any other NGINX Host unit, we mount our data volume, in this case named `data`, to `/opt/container/shared`.
 
 For more information on configuring the PostgreSQL container, consult its
 [documentation](https://hub.docker.com/_/postgres/).
@@ -75,7 +73,10 @@ Finally, we need to create a link in our NGINX Host container to the `bamboo` co
 is our final `docker-compose.yml` file:
 
 ```yaml
-version: "3"
+version: "2.1"
+
+volumes:
+  data:
 
 services:
   bamboo:
@@ -86,12 +87,8 @@ services:
     links:
       - db-bamboo
     volumes:
+      - data:/opt/container/shared
       - /home/me/bamboo:/opt/data/bamboo
-    volumes_from:
-      - data
-
-  data:
-    image: handcraftedbits/nginx-host-data
 
   db-bamboo:
     image: postgres
@@ -104,16 +101,14 @@ services:
 
   proxy:
     image: handcraftedbits/nginx-host
-    depends_on:
-      bamboo:
-        condition: service_healthy
+    links:
+      - bamboo
     ports:
       - "443:443"
     volumes:
+      - data:/opt/container/shared
       - /etc/letsencrypt:/etc/letsencrypt
       - /home/me/dhparam.pem:/etc/ssl/dhparam.pem
-    volumes_from:
-      - data
 ```
 
 This will result in making a Bamboo instance available at `https://mysite.com/bamboo`.

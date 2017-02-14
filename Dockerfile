@@ -1,7 +1,7 @@
-FROM handcraftedbits/nginx-unit:1.1.0
+FROM handcraftedbits/nginx-unit:1.1.2
 MAINTAINER HandcraftedBits <opensource@handcraftedbits.com>
 
-ARG BAMBOO_VERSION=5.14.4.1
+ARG BAMBOO_VERSION=5.15.0.1
 ARG MAVEN_VERSION=3.3.9
 
 ENV BAMBOO_HOME /opt/data/bamboo
@@ -10,7 +10,7 @@ ENV PATH ${PATH}:/opt/maven/bin
 COPY data /
 
 RUN apk update && \
-  apk add bash ca-certificates openjdk8 wget && \
+  apk add ca-certificates openjdk8 wget && \
 
   cd /opt && \
   wget https://www.atlassian.com/software/bamboo/downloads/binary/atlassian-bamboo-${BAMBOO_VERSION}.tar.gz && \
