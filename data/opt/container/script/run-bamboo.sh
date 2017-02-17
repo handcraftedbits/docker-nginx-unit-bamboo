@@ -8,7 +8,7 @@ checkCommonRequiredVariables
 
 notifyUnitLaunched
 
-unitConf=`copyUnitConf nginx-unit-bamboo`
+copyUnitConf nginx-unit-bamboo > /dev/null
 
 logUrlPrefix "bamboo"
 
@@ -31,4 +31,4 @@ printf "changeit\nyes" | keytool -import -trustcacerts -alias root \
 
 # Start Bamboo.
 
-startProcessWithTrap onProcessStopped ${unitConf} /opt/bamboo/bin/start-bamboo.sh -fg
+exec /opt/bamboo/bin/start-bamboo.sh -fg

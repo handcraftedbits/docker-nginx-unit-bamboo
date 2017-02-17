@@ -1,4 +1,4 @@
-FROM handcraftedbits/nginx-unit:1.1.2
+FROM handcraftedbits/nginx-unit:1.1.3
 MAINTAINER HandcraftedBits <opensource@handcraftedbits.com>
 
 ARG BAMBOO_VERSION=5.15.0.1
